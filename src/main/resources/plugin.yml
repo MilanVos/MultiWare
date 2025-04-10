@@ -1,0 +1,6 @@
+name: MultiWare
+version: '1.0'
+main: nl.multitime.multiWare.MultiWare
+api-version: '1.19'
+authors: [ MultiDevelopment ]
+description: Minecraft Client Made by Multtime himself

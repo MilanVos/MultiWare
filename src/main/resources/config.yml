@@ -1,0 +1,48 @@
+# MultiWare Configuration
+
+# Game settings
+game:
+  # Maximum number of rounds to play in a game
+  maxRounds: 5
+
+  # Time in seconds between minigames
+  timeBetweenGames: 10
+
+  # Default game duration in seconds
+  defaultGameDuration: 60
+
+  # Minimum number of players required to start a game
+  minPlayers: 2
+
+# Minigame settings
+minigames:
+  # Default settings for all minigames
+  default:
+    # Whether to teleport players to the minigame spawn location
+    teleportOnStart: true
+
+    # Whether to restore player inventories after the minigame
+    restoreInventory: true
+
+    # Whether to heal players when the minigame starts
+    healOnStart: true
+
+# Messages
+messages:
+  prefix: "&6[MultiWare] &r"
+  gameStarting: "&eEen nieuwe MultiWare game start over &c{time} &eseconden!"
+  gameStarted: "&eMultiWare game is gestart! Er zullen &c{rounds} &eminigames worden gespeeld."
+  gameEnded: "&eMultiWare game is beëindigd!"
+  roundStarting: "&eRonde &c{current}&e/&c{max}&e: &6{minigame}"
+  roundEnded: "&eRonde beëindigd!"
+  notEnoughPlayers: "&cNiet genoeg spelers om te starten! (Minimaal {min} nodig)"
+  notEnoughMinigames: "&cNiet genoeg minigames beschikbaar om te starten! (Minimaal 3 nodig)"
+
+# Permissions
+permissions:
+  admin: "multiware.admin"
+  start: "multiware.start"
+  stop: "multiware.stop"
+  create: "multiware.create"
+  edit: "multiware.edit"
+  remove: "multiware.remove"
