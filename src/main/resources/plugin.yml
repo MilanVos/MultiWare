@@ -3,4 +3,9 @@ version: '1.0'
 main: nl.multitime.multiWare.MultiWare
 api-version: '1.19'
 authors: [ MultiDevelopment ]
-description: Minecraft Client Made by Multtime himself
+description: Mineware from Cubecraft custom made!
+
+commands:
+  mw:
+    description: MultiWare management command
+    usage: /<command> <create|edit|remove|disable|enable>
