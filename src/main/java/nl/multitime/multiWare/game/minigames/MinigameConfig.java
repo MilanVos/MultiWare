@@ -90,6 +90,8 @@ public class MinigameConfig implements ConfigurationSerializable {
                 return extraData.containsKey("arenaMin") && extraData.containsKey("arenaMax");
             case "towerup":
                 return  extraData.containsKey("towerup");
+            case "freeze":
+                return extraData.containsKey("freeze");
 
             default:
                 return true;

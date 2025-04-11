@@ -353,6 +353,9 @@ public class GameManager {
 
             case "towerup":
                 return new TowerUpMinigame(plugin, config);
+            case "freeze":
+                return new FreezeMinigame(plugin, config);
+
 
             default:
                 plugin.getLogger().warning("Onbekend minigame type: " + config.getType());
