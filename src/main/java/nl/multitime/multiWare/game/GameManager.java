@@ -1,10 +1,7 @@
 package nl.multitime.multiWare.game;
 
 import nl.multitime.multiWare.MultiWare;
-import nl.multitime.multiWare.game.minigames.BreakBlockMinigame;
-import nl.multitime.multiWare.game.minigames.ClickPressurePlateMinigame;
-import nl.multitime.multiWare.game.minigames.Minigame;
-import nl.multitime.multiWare.game.minigames.MinigameConfig;
+import nl.multitime.multiWare.game.minigames.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -353,6 +350,9 @@ public class GameManager {
 
             case "breakblock":
                 return new BreakBlockMinigame(plugin, config);
+
+            case "towerup":
+                return new TowerUpMinigame(plugin, config);
 
             default:
                 plugin.getLogger().warning("Onbekend minigame type: " + config.getType());

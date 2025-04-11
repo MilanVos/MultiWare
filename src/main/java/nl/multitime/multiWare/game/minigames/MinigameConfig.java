@@ -88,6 +88,8 @@ public class MinigameConfig implements ConfigurationSerializable {
 
             case "breakblock":
                 return extraData.containsKey("arenaMin") && extraData.containsKey("arenaMax");
+            case "towerup":
+                return  extraData.containsKey("towerup");
 
             default:
                 return true;
