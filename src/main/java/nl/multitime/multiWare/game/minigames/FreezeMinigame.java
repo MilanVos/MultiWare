@@ -39,7 +39,7 @@ public class FreezeMinigame extends Minigame {
 
         broadcastMessage(ChatColor.GOLD + "Blijf helemaal stil voor 5 seconden!");
 
-        Bukkit.getScheduler().runTaskLater(plugin, this::checkWinners, 100L); // 5 seconds
+        Bukkit.getScheduler().runTaskLater(plugin, this::end, 100L); // 5 seconds
     }
 
     @EventHandler
@@ -61,7 +61,7 @@ public class FreezeMinigame extends Minigame {
         }
     }
 
-    private void checkWinners() {
+    public void end() {
         for (UUID playerId : players) {
             if (!failedPlayers.contains(playerId)) {
                 addScore(playerId, 1);
