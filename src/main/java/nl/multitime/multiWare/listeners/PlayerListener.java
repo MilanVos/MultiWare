@@ -40,7 +40,7 @@ public class PlayerListener implements Listener {
         if (event.getDamager() instanceof Player && event.getEntity() instanceof Player) {
             GameManager gameManager = plugin.getGameManager();
 
-            if (!gameManager.isPvPEnabled()) {
+            if (!gameManager.isPvpEnabled()) {
                 event.setCancelled(true);
             }
         }
