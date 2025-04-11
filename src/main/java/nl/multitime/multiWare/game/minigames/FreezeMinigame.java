@@ -15,6 +15,7 @@ import java.util.UUID;
 public class FreezeMinigame extends Minigame {
 
     private final Set<UUID> failedPlayers = new HashSet<>();
+    private final Set<UUID> completedPlayers = new HashSet<>();
     private final HashMap<UUID, Location> initialPositions = new HashMap<>();
 
     public FreezeMinigame(MultiWare plugin, MinigameConfig config) {
@@ -27,6 +28,7 @@ public class FreezeMinigame extends Minigame {
         super.start();
 
         failedPlayers.clear();
+        completedPlayers.clear();
         initialPositions.clear();
 
         for (UUID playerId : players) {
@@ -39,7 +41,7 @@ public class FreezeMinigame extends Minigame {
 
         broadcastMessage(ChatColor.GOLD + "Blijf helemaal stil voor 5 seconden!");
 
-        Bukkit.getScheduler().runTaskLater(plugin, this::end, 100L); // 5 seconds
+        Bukkit.getScheduler().runTaskLater(plugin, this::checkWinners, 100L); // 5 seconds
     }
 
     @EventHandler
@@ -61,17 +63,31 @@ public class FreezeMinigame extends Minigame {
         }
     }
 
-    public void end() {
+    private void checkWinners() {
         for (UUID playerId : players) {
             if (!failedPlayers.contains(playerId)) {
-                addScore(playerId, 1);
-                Player player = Bukkit.getPlayer(playerId);
-                if (player != null) {
-                    player.sendMessage(ChatColor.GREEN + "Je bleef stil en verdient 1 punt!");
-                }
+                completedPlayers.add(playerId);
             }
         }
         complete();
+    }
+
+    @Override
+    public void end() {
+        super.end();
+
+        int points = 3; // Begin met 3 punten voor de eerste speler
+
+        for (UUID playerId : completedPlayers) {
+            if (points > 0) {
+                Player player = Bukkit.getPlayer(playerId);
+                if (player != null) {
+                    addScore(playerId, points);
+                    player.sendMessage(ChatColor.GREEN + "Je hebt " + points + " punten verdiend!");
+                }
+                points--; // Verminder de punten voor de volgende speler
+            }
+        }
     }
 
     @Override
