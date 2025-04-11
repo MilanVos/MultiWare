@@ -355,7 +355,8 @@ public class GameManager {
                 return new TowerUpMinigame(plugin, config);
             case "freeze":
                 return new FreezeMinigame(plugin, config);
-
+            case "lavafloor":
+                return new LavaFloorMinigame(plugin, config);
 
             default:
                 plugin.getLogger().warning("Onbekend minigame type: " + config.getType());

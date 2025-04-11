@@ -92,6 +92,8 @@ public class MinigameConfig implements ConfigurationSerializable {
                 return  extraData.containsKey("towerup");
             case "freeze":
                 return extraData.containsKey("freeze");
+            case "lavafloor":
+                return extraData.containsKey("lavafloor");
 
             default:
                 return true;
