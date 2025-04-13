@@ -13,6 +13,8 @@ public class MinigameConfig implements ConfigurationSerializable {
     private boolean enabled;
     private Location spawnLocation;
     private Map<String, Object> extraData;
+    private int duration = 60;
+    private boolean pvpEnabled = false;
 
     public MinigameConfig(String name, String type) {
         this.name = name;
@@ -94,5 +96,21 @@ public class MinigameConfig implements ConfigurationSerializable {
             default:
                 return true;
         }
+    }
+
+    public boolean isPvpEnabled() {
+        return pvpEnabled;
+    }
+
+    public Object getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public void setPvpEnabled(boolean pvpEnabled) {
+        this.pvpEnabled = pvpEnabled;
     }
 }

@@ -25,6 +25,9 @@ public class GameManager {
     public BukkitTask gameLoopTask;
     public int roundsPlayed = 0;
     public final int maxRounds;
+    private Map<String, MinigameConfig> minigames;
+    private Set<UUID> activePlayers = new HashSet<>();
+
 
     public GameManager(MultiWare plugin) {
         this.plugin = plugin;
@@ -132,7 +135,7 @@ public class GameManager {
         Bukkit.getScheduler().runTaskLater(plugin, this::startNextMinigame, 10 * 20L);
     }
 
-    private void endGame() {
+    public void endGame() {
         if (gameState == GameState.INACTIVE) {
             return;
         }
@@ -416,6 +419,28 @@ public class GameManager {
 
     public int getMaxRounds() {
         return maxRounds;
+    }
+
+    public boolean deleteMinigameConfig(String minigameName) {
+        String lowerCaseName = minigameName.toLowerCase();
+
+        if (!minigames.containsKey(lowerCaseName)) {
+            return false;
+        }
+
+        minigames.remove(lowerCaseName);
+
+        File file = new File(plugin.getDataFolder(), "minigames/" + lowerCaseName + ".yml");
+        if (file.exists()) {
+            boolean deleted = file.delete();
+            return deleted;
+        }
+
+        return true;
+    }
+
+    public boolean isPlayerInGame(UUID uniqueId) {
+        return activePlayers.contains(uniqueId);
     }
 
     public enum GameState {
